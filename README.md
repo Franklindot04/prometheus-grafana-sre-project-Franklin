@@ -240,32 +240,32 @@ Alerts will resolve automatically once the service is healthy again.
 
 # 🖼️ Screenshots
 
-1. Prometheus Targets (All UP)  
-   📸 Insert screenshot here  
+1. **Prometheus Targets (All UP)**  
+   ![Prometheus Targets](assets/01-prometheus-targets.png)
 
-2. FastAPI `/metrics` Endpoint  
-   📸 Insert screenshot here  
+2. **FastAPI `/metrics` Endpoint**  
+   ![FastAPI Metrics Endpoint](assets/02-fastapi-metrics-endpoint.png)
 
-3. Grafana Dashboard List  
-   📸 Insert screenshot here  
+3. **Grafana Dashboard List**  
+   ![Grafana Dashboard List](assets/03-grafana-dashboard-list.png)
 
-4. FastAPI Metrics Dashboard  
-   📸 Insert screenshot here  
+4. **FastAPI Metrics Dashboard**  
+   ![FastAPI Metrics Dashboard](assets/04-fastapi-metrics-dashboard.png)
 
-5. Blackbox Exporter Dashboard  
-   📸 Insert screenshot here  
+5. **Blackbox Exporter Dashboard**  
+   ![Blackbox Dashboard](assets/05-blackbox-dashboard.png)
 
-6. Prometheus Internal Dashboard  
-   📸 Insert screenshot here  
+6. **Prometheus Internal Dashboard**  
+   ![Prometheus Internal Dashboard](assets/06-prometheus-internal-dashboard.png)
 
-7. Prometheus Alerts Page (with firing alerts)  
-   📸 Insert screenshot here  
+7. **Prometheus Alerts Page (with firing alerts)**  
+   ![Prometheus Alerts Firing](assets/07-prometheus-alerts-firing.png)
 
-8. Alertmanager UI (with active alerts)  
-   📸 Insert screenshot here  
+8. **Alertmanager UI (with active alerts)**  
+   ![Alertmanager Active Alerts](assets/08-alertmanager-active-alerts.png)
 
-9. Docker Desktop — `sre-app` Exited  
-   📸 Insert screenshot here  
+9. **Docker Desktop — `sre-app` Exited**  
+   ![Docker Desktop sre-app Exited](assets/09-docker-desktop-sre-app-exited.png)
 
 ---
 
