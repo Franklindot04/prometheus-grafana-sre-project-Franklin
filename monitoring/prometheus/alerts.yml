@@ -1,0 +1,29 @@
+groups:
+  - name: fastapi-alerts
+    rules:
+      - alert: AppDown
+        expr: up{job="fastapi-app"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "FastAPI app is down"
+          description: "The FastAPI application has not been reachable for 30 seconds."
+
+      - alert: HighRequestLatency
+        expr: histogram_quantile(0.95, sum(rate(app_request_latency_seconds_bucket[1m])) by (le)) > 0.5
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High request latency"
+          description: "95th percentile latency is above 0.5 seconds for over 1 minute."
+
+      - alert: HighErrorRate
+        expr: rate(app_request_count_total{method="GET", endpoint="/"}[2m]) > 5
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High error rate"
+          description: "The request rate for the root endpoint is unusually high."

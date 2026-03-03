@@ -1,0 +1,37 @@
+{
+  "id": null,
+  "title": "Prometheus Internal Metrics",
+  "tags": ["prometheus"],
+  "schemaVersion": 36,
+  "version": 1,
+  "refresh": "5s",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Scrape Duration",
+      "datasource": "Prometheus",
+      "targets": [
+        { "expr": "rate(prometheus_target_scrape_pool_scrapes_total[5m])" }
+      ],
+      "gridPos": { "x": 0, "y": 0, "w": 12, "h": 6 }
+    },
+    {
+      "type": "table",
+      "title": "Target Health",
+      "datasource": "Prometheus",
+      "targets": [
+        { "expr": "up" }
+      ],
+      "gridPos": { "x": 12, "y": 0, "w": 12, "h": 6 }
+    },
+    {
+      "type": "graph",
+      "title": "Rule Evaluation Duration",
+      "datasource": "Prometheus",
+      "targets": [
+        { "expr": "rate(prometheus_rule_evaluation_duration_seconds_sum[5m])" }
+      ],
+      "gridPos": { "x": 0, "y": 6, "w": 24, "h": 6 }
+    }
+  ]
+}

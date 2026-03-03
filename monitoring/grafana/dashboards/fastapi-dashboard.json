@@ -1,0 +1,55 @@
+{
+  "id": null,
+  "title": "FastAPI Metrics",
+  "tags": ["fastapi", "prometheus"],
+  "timezone": "browser",
+  "schemaVersion": 36,
+  "version": 1,
+  "refresh": "5s",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Total Requests (5m)",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "sum(rate(app_request_count_total[5m]))"
+        }
+      ],
+      "gridPos": { "x": 0, "y": 0, "w": 6, "h": 4 }
+    },
+    {
+      "type": "graph",
+      "title": "Request Latency (95th Percentile)",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(app_request_latency_seconds_bucket[5m])) by (le))"
+        }
+      ],
+      "gridPos": { "x": 6, "y": 0, "w": 12, "h": 6 }
+    },
+    {
+      "type": "table",
+      "title": "Requests by Endpoint",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "sum(rate(app_request_count_total[5m])) by (endpoint)"
+        }
+      ],
+      "gridPos": { "x": 0, "y": 6, "w": 12, "h": 8 }
+    },
+    {
+      "type": "graph",
+      "title": "Latency by Endpoint",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "sum(rate(app_request_latency_seconds_sum[5m])) by (endpoint) / sum(rate(app_request_latency_seconds_count[5m])) by (endpoint)"
+        }
+      ],
+      "gridPos": { "x": 12, "y": 6, "w": 12, "h": 8 }
+    }
+  ]
+}
