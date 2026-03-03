@@ -19,11 +19,33 @@ groups:
           summary: "High request latency"
           description: "95th percentile latency is above 0.5 seconds for over 1 minute."
 
-      - alert: HighErrorRate
-        expr: rate(app_request_count_total{method="GET", endpoint="/"}[2m]) > 5
+      - alert: TrafficSpike
+        expr: rate(app_request_count_total[2m]) > 20
         for: 2m
         labels:
           severity: warning
         annotations:
-          summary: "High error rate"
-          description: "The request rate for the root endpoint is unusually high."
+          summary: "Unusual traffic spike"
+          description: "The request rate is unusually high compared to normal baseline."
+
+  - name: blackbox-alerts
+    rules:
+      - alert: BlackboxProbeFailed
+        expr: probe_success == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Blackbox probe failed"
+          description: "The external endpoint is unreachable."
+
+  - name: prometheus-alerts
+    rules:
+      - alert: PrometheusTargetMissing
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Prometheus target down"
+          description: "A Prometheus scrape target is down."
