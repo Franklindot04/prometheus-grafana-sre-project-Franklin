@@ -9,7 +9,7 @@
 
 # 📡 SRE Observability Platform — FastAPI • Prometheus • Grafana • Alertmanager • Blackbox Exporter
 
-A complete, production-grade observability and alerting platform built around a FastAPI application, instrumented with Prometheus metrics, visualized through Grafana dashboards, monitored externally via Blackbox Exporter, and equipped with a full alerting pipeline using Prometheus Alerting Rules + Alertmanager..
+A complete, production-grade observability and alerting platform built around a FastAPI application, instrumented with Prometheus metrics, visualized through Grafana dashboards, monitored externally via Blackbox Exporter, and equipped with a full alerting pipeline using Prometheus Alerting Rules + Alertmanager.
 
 This project demonstrates real-world SRE/DevOps practices:
 
