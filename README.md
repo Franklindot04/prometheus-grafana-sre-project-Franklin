@@ -309,4 +309,3 @@ This project demonstrates a complete observability and alerting pipeline:
 - Alert rule evaluation  
 - Alert routing and management  
 
-It is designed to be both developer-friendly and production-ready, making it an excellent portfolio project for SRE/DevOps roles.
