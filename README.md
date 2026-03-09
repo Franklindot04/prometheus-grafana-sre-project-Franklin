@@ -248,6 +248,42 @@ receivers:
 
 ---
 
+## 🔐 Secret Management
+
+To protect sensitive information, the real Slack webhook URL is **not committed to the repository**.
+
+---
+
+### 🔑 Environment Variable
+
+The actual webhook is stored locally in a `.env` file:
+
+```bash
+SLACK_WEBHOOK_URL=your_real_slack_webhook_here
+```
+
+---
+
+### 🛡️ Repository Protection
+
+- `.env` contains the **real Slack webhook**
+- `.env` is included in **`.gitignore`** to prevent it from being committed
+- The public configuration files use **environment variable placeholders**
+
+---
+
+### ⚙️ Alertmanager Configuration
+
+The `alertmanager.yml` file references the webhook using an environment variable:
+
+```bash
+url: ${SLACK_WEBHOOK_URL}
+```
+
+This ensures that **sensitive credentials remain outside the codebase**, following best practices for **secure secret management in DevOps and SRE workflows**.
+
+---
+
 # 🧪 Testing Alerts
 
 ## 1️⃣ Trigger `AppDown` alert
