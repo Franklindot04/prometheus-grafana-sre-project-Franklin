@@ -29,7 +29,7 @@ receivers:
     slack_configs:
       - channel: "#alerts"
         send_resolved: true
-        api_url: "https://hooks.slack.com/services/REPLACE_ME"
+        api_url: "${SLACK_WEBHOOK_URL}"
 
         # 🔥 Slack Threading
         callback_id: "{{ .GroupLabels.alertname }}"
