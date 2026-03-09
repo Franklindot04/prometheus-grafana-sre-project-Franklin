@@ -389,10 +389,9 @@ These exporters are included but disabled locally. They will work automatically 
 - node-exporter and cAdvisor enabled on Linux  
 - Makefile for developer ergonomics  
 - Kubernetes deployment (Helm or Kustomize)  
-- Alert grouping and inhibition rules
+- Alert grouping and inhibition rules  
 - Grafana-managed alerting enhancements (labels, grouping)
 - Slack threaded notifications
-- Inhibition rules for noisy alerts
 - Silencing rules for maintenance windows
 - Uptime and probe dashboards in Grafana
 
