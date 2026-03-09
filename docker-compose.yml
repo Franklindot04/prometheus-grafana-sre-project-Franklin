@@ -31,6 +31,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
+      - grafana-storage:/var/lib/grafana
       - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards
       - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
     networks:
@@ -52,10 +53,15 @@ services:
     ports:
       - "9093:9093"
     volumes:
-      - ./monitoring/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+      - ./monitoring/alertmanager:/etc/alertmanager
+    environment:
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
     networks:
       - monitoring
 
 networks:
   monitoring:
     driver: bridge
+
+volumes:
+  grafana-storage:

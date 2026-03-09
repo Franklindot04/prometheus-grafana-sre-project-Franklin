@@ -6,6 +6,8 @@ groups:
         for: 30s
         labels:
           severity: critical
+          env: local
+          service: fastapi-app
         annotations:
           summary: "FastAPI app is down"
           description: "The FastAPI application has not been reachable for 30 seconds."
@@ -15,6 +17,8 @@ groups:
         for: 1m
         labels:
           severity: warning
+          env: local
+          service: fastapi-app
         annotations:
           summary: "High request latency"
           description: "95th percentile latency is above 0.5 seconds for over 1 minute."
@@ -24,6 +28,8 @@ groups:
         for: 2m
         labels:
           severity: warning
+          env: local
+          service: fastapi-app
         annotations:
           summary: "Unusual traffic spike"
           description: "The request rate is unusually high compared to normal baseline."
@@ -35,6 +41,8 @@ groups:
         for: 1m
         labels:
           severity: critical
+          env: local
+          service: external-endpoint
         annotations:
           summary: "Blackbox probe failed"
           description: "The external endpoint is unreachable."
@@ -46,6 +54,8 @@ groups:
         for: 1m
         labels:
           severity: warning
+          env: local
+          service: prometheus
         annotations:
           summary: "Prometheus target down"
           description: "A Prometheus scrape target is down."

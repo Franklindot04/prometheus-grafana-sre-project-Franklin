@@ -2,9 +2,62 @@ global:
   resolve_timeout: 5m
 
 route:
-  receiver: "default"
+  receiver: default-receiver
+  group_by: ['alertname', 'service', 'env']
+  group_wait: 10s
+  group_interval: 5m
+  repeat_interval: 3h
+
+  routes:
+    - matchers:
+        - severity="critical"
+      receiver: slack-critical
+      continue: false
+
+    - matchers:
+        - severity="warning"
+      receiver: warning-webhook
+      continue: false
+
+    - matchers:
+        - env="local"
+      receiver: local-receiver
+      continue: false
 
 receivers:
-  - name: "default"
+  - name: slack-critical
+    slack_configs:
+      - channel: "#alerts"
+        send_resolved: true
+        api_url: "https://hooks.slack.com/services/REPLACE_ME"
+
+        # 🔥 Slack Threading
+        callback_id: "{{ .GroupLabels.alertname }}"
+
+        # 🔥 Better formatting
+        title: "{{ .CommonLabels.alertname }} ({{ .Status }})"
+        text: >-
+          {{ range .Alerts }}
+          *Instance:* {{ .Labels.instance }}
+          *Severity:* {{ .Labels.severity }}
+          *Description:* {{ .Annotations.description }}
+          {{ end }}
+
+        icon_emoji: ":rotating_light:"
+        username: "Alertmanager"
+        link_names: true
+
+  - name: warning-webhook
     webhook_configs:
-      - url: "http://localhost:5001"
+      - url: "http://host.docker.internal:5001"
+        send_resolved: true
+
+  - name: local-receiver
+    webhook_configs:
+      - url: "http://host.docker.internal:5001"
+        send_resolved: true
+
+  - name: default-receiver
+    webhook_configs:
+      - url: "http://host.docker.internal:5001"
+        send_resolved: true
