@@ -308,5 +308,4 @@ This project demonstrates a complete observability and alerting pipeline:
 - External probing  
 - Alert rule evaluation  
 - Alert routing and management
-- 
-
+  
