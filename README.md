@@ -160,6 +160,65 @@ This project includes a full alerting pipeline:
 
 ---
 
+## 🔔 Grafana-Managed Alerting (Blackbox Uptime Monitoring)
+
+In addition to Prometheus alert rules, this project includes a **Grafana-managed alert rule** that monitors the FastAPI application externally using the **Blackbox Exporter**.
+
+---
+
+### 📊 Alert Query
+
+```bash
+probe_success{job="blackbox", instance="http://app:8000"}
+```
+
+---
+
+### ⚙️ Alert Condition
+
+```
+A < 1
+```
+
+---
+
+### 🚦 Alert Behavior
+
+- **App UP** → `probe_success = 1` → Alert state: **Normal**
+- **App DOWN** → `probe_success = 0` → **Alert Fires**
+- **App Recovers** → Alert **Resolves Automatically**
+
+---
+
+### 📢 Slack Notifications
+
+Alerts are delivered to **Slack** using a webhook stored in a `.env` file.
+
+```bash
+SLACK_WEBHOOK_URL=REPLACE_ME
+```
+
+The public repository contains a **placeholder value** to prevent exposing secrets.
+
+---
+
+### 📘 Runbook Integration
+
+Each alert includes structured metadata to assist with troubleshooting and operational response:
+
+- **Summary**
+- **Description**
+- **Runbook URL**
+- **Severity Label**
+- **Instance Label**
+- **Job Label**
+
+---
+
+This setup demonstrates **external uptime monitoring**, **Grafana-managed alerting**, and **secure secret management** for production-style observability workflows.
+
+---
+
 ## 📄 Alert Rules (`alerts.yml`)
 
 | Alert | Severity | Description |
