@@ -406,5 +406,5 @@ This project demonstrates a complete observability and alerting pipeline:
 - Dashboard visualization  
 - External probing  
 - Alert rule evaluation  
-- Alert routing and management
+- Alert routing and management.
   
